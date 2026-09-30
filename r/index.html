@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nusuk Tour — Hajj & Umra | Все контакты</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --ink: #062035;
+            --navy: #0A2D49;
+            --brand: #0A436C;
+            --white: #FFFFFF;
+            --glass: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --glass-hover: rgba(255, 255, 255, 0.14);
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: var(--ink);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            color: var(--white);
+        }
+
+        /* Background Image */
+        .bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://image.qwenlm.ai/public_source/4e2e3d38-e31e-420c-88fa-d9ecdbae4446/1045cba6c-cfd5-4c75-a246-313ce67ed521.png');
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px) brightness(0.55);
+            transform: scale(1.1);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, 
+                rgba(6, 32, 53, 0.55) 0%, 
+                rgba(10, 45, 73, 0.45) 40%, 
+                rgba(6, 32, 53, 0.65) 100%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Geometric pattern overlay */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.04;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(255,255,255,0.1) 40px, rgba(255,255,255,0.1) 41px),
+                repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,0.1) 40px, rgba(255,255,255,0.1) 41px);
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 48px 24px 80px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .logo-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 24px;
+            border-radius: 50%;
+            background: transparent;
+            padding: 8px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255,255,255,0.1);
+            animation: logoFloat 6s ease-in-out infinite;
+            position: relative;
+        }
+
+
+        .logo-container img, .logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 20px rgba(255,255,255,0.15));
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+        .company-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--white);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            line-height: 1.1;
+        }
+
+        .company-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .company-description {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.6;
+            max-width: 340px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        /* Decorative line */
+        .divider {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            margin: 28px auto 36px;
+        }
+
+        /* Links Section */
+        .links-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .link-button {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 22px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 16px;
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-button::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--white);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+            border-radius: 0 2px 2px 0;
+        }
+
+        .link-button:hover {
+            background: var(--glass-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .link-button:hover::before {
+            transform: scaleY(1);
+        }
+
+        .link-button:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .link-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.3rem;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .link-icon.instagram {
+            background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            border-color: transparent;
+        }
+
+        .link-icon.telegram {
+            background: linear-gradient(135deg, #2aabee, #229ed9);
+            border-color: transparent;
+        }
+
+        .link-icon.whatsapp {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            border-color: transparent;
+        }
+
+        .link-icon.website {
+            background: linear-gradient(135deg, var(--brand), #0d5a8f);
+            border-color: transparent;
+        }
+
+        .link-icon.phone {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            border-color: transparent;
+        }
+
+        .link-icon.email {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            border-color: transparent;
+        }
+
+        .link-icon.tiktok {
+            background: linear-gradient(135deg, #000000, #333333);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .link-icon.youtube {
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            border-color: transparent;
+        }
+
+        .link-text {
+            flex: 1;
+        }
+
+        .link-label {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.45);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 3px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .link-value {
+            font-weight: 600;
+            font-size: 0.92rem;
+        }
+
+        .link-arrow {
+            color: rgba(255,255,255,0.3);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .link-button:hover .link-arrow {
+            transform: translateX(4px);
+            color: var(--white);
+        }
+
+        /* QR Section */
+        .qr-section {
+            margin-top: 44px;
+            width: 100%;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .qr-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 36px 28px;
+            border: 1px solid var(--glass-border);
+            text-align: center;
+        }
+
+        .qr-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .qr-subtitle {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 24px;
+        }
+
+        .qr-image-container {
+            width: 190px;
+            height: 190px;
+            margin: 0 auto 20px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 3px solid rgba(255,255,255,0.2);
+            padding: 10px;
+            background: var(--white);
+            position: relative;
+        }
+
+        .qr-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .qr-hint {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.45);
+            line-height: 1.6;
+        }
+
+        .qr-hint strong {
+            color: rgba(255,255,255,0.7);
+            font-weight: 600;
+        }
+
+        /* Status badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(34, 197, 94, 0.15);
+            color: #4ade80;
+            padding: 8px 16px;
+            border-radius: 24px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #4ade80;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4); }
+            50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(74, 222, 128, 0); }
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 48px;
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .footer-text {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.3);
+        }
+
+        .footer-brand {
+            font-family: 'Montserrat', sans-serif;
+            color: rgba(255,255,255,0.5);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        /* Admin Panel Toggle */
+        .admin-toggle {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: var(--brand);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.15);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .admin-toggle:hover {
+            transform: scale(1.1) rotate(45deg);
+            background: #0d5a8f;
+        }
+
+        /* Admin Panel */
+        .admin-panel {
+            position: fixed;
+            top: 0;
+            right: -420px;
+            width: 400px;
+            max-width: 92vw;
+            height: 100vh;
+            background: var(--ink);
+            border-left: 1px solid var(--glass-border);
+            box-shadow: -8px 0 40px rgba(0,0,0,0.5);
+            z-index: 200;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+            padding: 32px 24px;
+        }
+
+        .admin-panel.open {
+            right: 0;
+        }
+
+        .admin-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            z-index: 199;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .admin-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .admin-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .admin-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .admin-close {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: var(--white);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .admin-close:hover {
+            background: var(--glass-hover);
+        }
+
+        .admin-section {
+            margin-bottom: 18px;
+        }
+
+        .admin-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+        }
+
+        .admin-input {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-family: 'Manrope', sans-serif;
+            color: var(--white);
+            transition: all 0.2s;
+            outline: none;
+        }
+
+        .admin-input:focus {
+            border-color: var(--brand);
+            background: var(--glass-hover);
+            box-shadow: 0 0 0 3px rgba(10, 67, 108, 0.3);
+        }
+
+        .admin-input::placeholder {
+            color: rgba(255,255,255,0.25);
+        }
+
+        .admin-save {
+            width: 100%;
+            padding: 16px;
+            background: var(--brand);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 12px;
+        }
+
+        .admin-save:hover {
+            background: #0d5a8f;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(10, 67, 108, 0.4);
+        }
+
+        .admin-info {
+            background: rgba(10, 67, 108, 0.3);
+            border: 1px solid rgba(10, 67, 108, 0.5);
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 24px;
+        }
+
+        .admin-info p {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+
+        .link-button.hidden-link {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .container {
+                padding: 36px 18px 60px;
+            }
+
+            .company-name {
+                font-size: 1.8rem;
+                letter-spacing: 2px;
+            }
+
+            .company-subtitle {
+                font-size: 0.85rem;
+                letter-spacing: 4px;
+            }
+
+            .logo-container {
+                width: 130px;
+                height: 130px;
+            }
+
+            .link-button {
+                padding: 16px 18px;
+            }
+
+            .qr-image-container {
+                width: 170px;
+                height: 170px;
+            }
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--brand);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 14px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 300;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* QR pulse */
+        .qr-pulse {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 210px;
+            height: 210px;
+            border: 2px solid rgba(255,255,255,0.15);
+            border-radius: 16px;
+            animation: qrPulse 2.5s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes qrPulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.08);
+                opacity: 0;
+            }
+        }
+
+        .qr-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Scrollbar */
+        .admin-panel::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .admin-panel::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .admin-panel::-webkit-scrollbar-thumb {
+            background: var(--glass-border);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-image"></div>
+    <div class="bg-overlay"></div>
+    <div class="bg-pattern"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-container">
+                <img src="logo.png" alt="NUSUK TOUR" class="logo-img">
+            </div>
+            <h1 class="company-name">NUSUK TOUR</h1>
+            <p class="company-subtitle">Hajj & Umra</p>
+            <p class="company-description">Ваш проводник на святые земли. Регулярные рейсы на Умра из Махачкалы. Все официальные контакты в одном месте.</p>
+        </header>
+
+        <div class="divider"></div>
+
+        <!-- Links -->
+        <section class="links-section" id="linksContainer">
+            <a href="https://instagram.com/nusuk.umra" target="_blank" class="link-button" id="link-instagram">
+                <div class="link-icon instagram">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="m16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                </div>
+                <div class="link-text">
+                    <div class="link-label">Instagram</div>
+                    <div class="link-value" id="val-instagram">@nusuk.umra</div>
+                </div>
+                <span class="link-arrow">→</span>
+            </a>
+
+            <a href="https://t.me/canalnusuktour" target="_blank" class="link-button" id="link-telegram">
+                <div class="link-icon telegram">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                </div>
+                <div class="link-text">
+                    <div class="link-label">Telegram</div>
+                    <div class="link-value" id="val-telegram">@canalnusuktour</div>
+                </div>
+                <span class="link-arrow">→</span>
+            </a>
+
+            <a href="https://wa.me/798****0660" target="_blank" class="link-button" id="link-whatsapp">
+                <div class="link-icon whatsapp">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                </div>
+                <div class="link-text">
+                    <div class="link-label">WhatsApp</div>
+                    <div class="link-value" id="val-whatsapp">+7 988 636-06-60</div>
+                </div>
+                <span class="link-arrow">→</span>
+            </a>
+
+            <a href="https://nusuktour.ru" target="_blank" class="link-button" id="link-website">
+                <div class="link-icon website">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                </div>
+                <div class="link-text">
+                    <div class="link-label">Официальный сайт</div>
+                    <div class="link-value" id="val-website">nusuktour.ru</div>
+                </div>
+                <span class="link-arrow">→</span>
+            </a>
+
+            <a href="tel:+79886360660" class="link-button" id="link-phone">
+                <div class="link-icon phone">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <div class="link-text">
+                    <div class="link-label">Телефон</div>
+                    <div class="link-value" id="val-phone">+7 988 636-06-60</div>
+                </div>
+                <span class="link-arrow">→</span>
+            </a>
+
+            <a href="mailto:info@nusuktour.ru" class="link-button" id="link-email">
+                <div class="link-icon email">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div class="link-text">
+                    <div class="link-label">Электронная почта</div>
+                    <div class="link-value" id="val-email">info@nusuktour.ru</div>
+                </div>
+                <span class="link-arrow">→</span>
+            </a>
+
+            <a href="https://tiktok.com/@nusuk.umra" target="_blank" class="link-button" id="link-tiktok">
+                <div class="link-icon tiktok">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15.2a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.87a8.16 8.16 0 0 0 4.76 1.52v-3.4a4.85 4.85 0 0 1-1-.3z"/></svg>
+                </div>
+                <div class="link-text">
+                    <div class="link-label">TikTok</div>
+                    <div class="link-value" id="val-tiktok">@nusuk_tour</div>
+                </div>
+                <span class="link-arrow">→</span>
+            </a>
+
+            <a href="https://youtube.com/@nusuk.umra" target="_blank" class="link-button" id="link-youtube">
+                <div class="link-icon youtube">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </div>
+                <div class="link-text">
+                    <div class="link-label">YouTube</div>
+                    <div class="link-value" id="val-youtube">@nusuk_tour</div>
+                </div>
+                <span class="link-arrow">→</span>
+            </a>
+        </section>
+
+        <!-- QR Section -->
+        <section class="qr-section">
+            <div class="qr-card">
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    QR-код активен и постоянен
+                </div>
+                <p class="qr-subtitle">Наведите камеру — и все контакты перед вами</p>
+                <div class="qr-wrapper">
+                    <div class="qr-image-container">
+                        <img src="nusuk-qr-merch.png" alt="Nusuk Tour QR Code">
+                    </div>
+                    <div class="qr-pulse"></div>
+                </div>
+                <p class="qr-hint">Все контакты Nusuk Tour в одном скане</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p class="footer-text">© 2026 <span class="footer-brand">NUSUK TOUR</span> · Hajj & Umra</p>
+        </footer>
+    </div>
+
+
+
+
+    
+    <script>
+        // Загрузка сохранённых ссылок из админки
+        (function() {
+            var saved = localStorage.getItem('nusuk_links');
+            if (!saved) return;
+            var links = JSON.parse(saved);
+            var els = {
+                instagram: { link: 'link-instagram', val: 'val-instagram' },
+                telegram:  { link: 'link-telegram',  val: 'val-telegram' },
+                whatsapp:  { link: 'link-whatsapp',  val: 'val-whatsapp' },
+                website:   { link: 'link-website',   val: 'val-website' },
+                phone:     { link: 'link-phone',     val: 'val-phone' },
+                email:     { link: 'link-email',     val: 'val-email' },
+                tiktok:    { link: 'link-tiktok',    val: 'val-tiktok' },
+                youtube:   { link: 'link-youtube',   val: 'val-youtube' }
+            };
+            for (var key in els) {
+                var linkEl = document.getElementById(els[key].link);
+                var valEl = document.getElementById(els[key].val);
+                if (!linkEl || !valEl || !links[key]) continue;
+                
+                // Hide if visibility is false
+                if (links[key + '_visible'] === false) {
+                    linkEl.classList.add('hidden-link');
+                    continue;
+                }
+                
+                if (key === 'whatsapp') {
+                    linkEl.href = 'https://wa.me/' + links[key].replace(/[^0-9]/g, '');
+                    valEl.textContent = links[key];
+                } else if (key === 'phone') {
+                    linkEl.href = 'tel:' + links[key].replace(/[^0-9+]/g, '');
+                    valEl.textContent = links[key];
+                } else if (key === 'instagram') {
+                    linkEl.href = links[key];
+                    valEl.textContent = links[key].replace('https://instagram.com/', '@');
+                } else if (key === 'telegram') {
+                    linkEl.href = links[key];
+                    valEl.textContent = links[key].replace('https://t.me/', '@');
+                } else if (key === 'tiktok') {
+                    linkEl.href = links[key];
+                    valEl.textContent = links[key].replace('https://tiktok.com/', '@');
+                } else if (key === 'youtube') {
+                    linkEl.href = links[key];
+                    valEl.textContent = links[key].replace('https://youtube.com/', '@');
+                } else {
+                    linkEl.href = links[key];
+                    valEl.textContent = links[key].replace('https://', '').replace('http://', '');
+                }
+            }
+        })();
+    </script>
+</body>
+</html>
+
+
+
+    <script>
+        // Загрузка сохранённых ссылок из админки
+        (function() {
+            var saved = localStorage.getItem('nusuk_links');
+            if (!saved) return;
+            var links = JSON.parse(saved);
+            var els = {
+                instagram: { link: 'link-instagram', val: 'val-instagram' },
+                telegram:  { link: 'link-telegram',  val: 'val-telegram' },
+                whatsapp:  { link: 'link-whatsapp',  val: 'val-whatsapp' },
+                website:   { link: 'link-website',   val: 'val-website' },
+                phone:     { link: 'link-phone',     val: 'val-phone' },
+                email:     { link: 'link-email',     val: 'val-email' },
+                tiktok:    { link: 'link-tiktok',    val: 'val-tiktok' },
+                youtube:   { link: 'link-youtube',   val: 'val-youtube' }
+            };
+            for (var key in els) {
+                var linkEl = document.getElementById(els[key].link);
+                var valEl = document.getElementById(els[key].val);
+                if (!linkEl || !valEl || !links[key]) continue;
+                
+                // Hide if visibility is false
+                if (links[key + '_visible'] === false) {
+                    linkEl.classList.add('hidden-link');
+                    continue;
+                }
+                
+                if (key === 'whatsapp') {
+                    linkEl.href = 'https://wa.me/' + links[key].replace(/[^0-9]/g, '');
+                    valEl.textContent = links[key];
+                } else if (key === 'phone') {
+                    linkEl.href = 'tel:' + links[key].replace(/[^0-9+]/g, '');
+                    valEl.textContent = links[key];
+                } else if (key === 'instagram') {
+                    linkEl.href = links[key];
+                    valEl.textContent = links[key].replace('https://instagram.com/', '@');
+                } else if (key === 'telegram') {
+                    linkEl.href = links[key];
+                    valEl.textContent = links[key].replace('https://t.me/', '@');
+                } else if (key === 'tiktok') {
+                    linkEl.href = links[key];
+                    valEl.textContent = links[key].replace('https://tiktok.com/', '@');
+                } else if (key === 'youtube') {
+                    linkEl.href = links[key];
+                    valEl.textContent = links[key].replace('https://youtube.com/', '@');
+                } else {
+                    linkEl.href = links[key];
+                    valEl.textContent = links[key].replace('https://', '').replace('http://', '');
+                }
+            }
+        })();
+    </script>
+</body>
+</html>
